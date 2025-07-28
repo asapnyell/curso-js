@@ -1,0 +1,13 @@
+body{
+   font: normal;
+
+}
+
+input{
+    font: normal;
+    width: 100px;
+}
+
+div#res{
+    margin-top: 20px;
+}
