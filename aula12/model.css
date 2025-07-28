@@ -1,20 +1,24 @@
 body{
     background-color: rgb(186, 186, 236);
      font: normal 15pt Arial;
+     padding: 10px;
 }
 
 header{
     color: red;
     text-align: center;
+    padding: 10px;
 }
+
 
 section{
     background-color: rgb(252, 252, 252);
     border-radius: 10px;
-    padding: 10px;
-    width: 500px;
+    padding: 50px;
+    width: 200px;
     margin: auto;
     box-shadow: 5px 5px 10px black;
+    text-align: center;
 }
 
 footer{
