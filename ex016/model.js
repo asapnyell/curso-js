@@ -24,7 +24,12 @@ function inLista(n, l){
 
 function adicionar(){
     if(isNumero(numero.value) && !inLista(numero.value, valores)){
-        window.alert('Tudo OK!')
+        valores.push(Number(numero.value))
+        let item = document.getElementById('lista')
+        lista.text = `Valor ${numero.value} adicionado.`
+        lista.appendChild(item)
+        res.innerHTML = `Valor ${valores.value} adicionado.`
+        // window.alert('Tudo OK!')
 
     }else{
         window.alert('Valor Invalido ou já encontrado na lista.')
