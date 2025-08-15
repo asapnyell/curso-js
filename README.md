@@ -1,2 +1,2 @@
 # curso-js
-curso  javascript 
+curso HTML, CSS,  JavaScript 

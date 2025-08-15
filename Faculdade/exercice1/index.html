@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+   <!-- <script src="index.js" defer></script> Script Js aqui usar com 'defer' para o desempenho na renderização ficar bom! Recomendado é colocar antes do fechamendo do body, pode ser sem defer lá -->
+    <title>Document</title>
+</head>
+<body>
+   <header>
+        <h1>Título Principal da Página</h1>
+         <nav aria-label="Menu principal">
+      <ul>
+        <li><a href="#secao1">Seção 1</a></li>
+        <li><a href="#secao2">Seção 2</a></li>
+        <li><a href="#secao3">Seção 3</a></li>
+      </ul>
+    </nav>
+
+    <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+    </div>
+
+   </header>
+   
+  <main>
+    <section id="secao1">
+      <h2>Seção 1: Introdução</h2>
+      <p>Este é um conteúdo introdutório.</p>
+    </section>
+
+    <article>
+      <header>
+        <h2>Título do Artigo</h2>
+      </header>
+      <section>
+        <h3>Subtítulo do Artigo</h3>
+        <p>Conteúdo do artigo.</p>
+      </section>
+      <footer>
+        <p>Publicado em <time datetime="2025-08-15">15 de agosto de 2025</time>.</p>
+      </footer>
+    </article>
+
+    <aside>
+      <h2>Links Relacionados</h2>
+      <ul>
+        <li><a href="#outro">Outro conteúdo</a></li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Meu Site. Todos os direitos reservados.</p>
+    <nav aria-label="Links do rodapé">
+      <ul>
+        <li><a href="#privacidade">Política de Privacidade</a></li>
+      </ul>
+    </nav>
+  </footer>
+
+  
+
+
+    <h1 id="mensagem">Ola</h1>
+    <button class="botao" onclick="clicar()">clique aqui</button>
+    <button class="botao2" onclick="resetarMensagem()">Retornar</button>
+
+    <script src="index.js"></script>
+</body>
+</html>
