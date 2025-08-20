@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
     <title>Formulário Cadastro Usuario</title>
 </head>
 <body>
+     <form id="meuForm" class="card_cadastro">
+
+        <h2>Cadastrar</h2>
+        <div class="bar"></div>
+
+        <label for="nome">Nome</label>
+        <input type="text" placeholder="Username" id="nome" required>
+
+        <label for="cpf">CPF</label>
+        <input type="cpf" placeholder="CPF" required>
+
+        <label for="password">Senha</label>
+        <input type="password" placeholder="Password" required>
+
+        <button type="submit">Cadastrar</button>
+
+    </form>
     
+    <script src="js/script.js"></script>
 </body>
 </html>
