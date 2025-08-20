@@ -1,2 +1,3 @@
 # curso-js
-curso HTML, CSS,  JavaScript 
+Conceitos aprendidos na Faculdade e em cursos online.
+HTML, CSS, JavaScript
