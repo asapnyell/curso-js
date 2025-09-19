@@ -1,67 +1,77 @@
-/* Estilos gerais */
-body {
-    background-color: #f0f8ff; /* Cor de fundo */
+    /* Estilos gerais */
+  body {
+    /* Adiciona uma camada preta semi-transparente por cima da imagem */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./images/backg_basket.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
-    text-align: center; /* Centraliza todo o conteúdo do corpo */
+    text-align: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
-/* Estilos do cabeçalho */
-.titulo-principal {
-    color: orange;
-    font-size: 2.5em;
-    margin-top: 20px;
+
+    /* Estilos do cabeçalho */
+    .titulo-principal {
+        color: orange;
+        font-size: 2.5em;
+        margin-top: 20px;
+       
+    }
+
+    .subtitulo-destaque {
+        color: orange;
+        font-size: 1.2em;
+        font-weight: bold;
+       
+    }
+
+    nav a {
+        margin: 0 10px;
+        text-decoration: none;
+        color: white;
+    }
+
+    /* Letreiro usando <marquee> */
+    .marquee-text {
+        background-color: #ffcc00;
+        padding: 10px 0;
+        font-weight: bold;
+    }
+
+    /* Estilos do rodapé */
+    footer {
+        padding-top: 20px;
+    }
+
+    .link-dev {
+        display: inline-block;
+        text-decoration: none;
+        color: black;
+        margin: 0 auto;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background: #ccc;
+        margin: 20px auto;
+    }
+
+    /* Estilos do conteúdo principal */
+
+    .imagem-destaque {
+    display: block; /* A imagem precisa ser um elemento de bloco para usar 'margin: auto' */
+    margin: 0 auto; /* Centraliza horizontalmente a imagem no contêiner */
+    max-width: 60%; /* Garante que a imagem não ultrapasse a largura do contêiner */
 }
 
-.subtitulo-destaque {
-    color: blue;
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-}
-
-/* Simulação do letreiro (melhor prática que <marquee>) */
-.marquee-wrapper {
-    background-color: #ffcc00;
-    overflow: hidden; /* Garante que o texto se mova dentro da área */
-    width: 100%;
-    height: 60px;
-    white-space: nowrap;
-    box-sizing: border-box;
-}
-
-.marquee-text {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee-animation 15s linear infinite;
-    line-height: 40px;
-}
-
-@keyframes marquee-animation {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(-100%, 0); }
-}
-
-/* Estilos do rodapé */
-footer {
-    padding-top: 20px;
-}
-
-.link-dev {
-    display: inline-block;
-    text-decoration: none;
-    color: black;
-    margin: 0 auto; /* Centraliza o link como um bloco */
-}
-
-/* Estilos para a linha horizontal */
-hr {
-    border: 0;
-    height: 1px;
-    background: #ccc;
-    margin: 20px auto;
-}
+    main {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        margin: 20px auto;
+        border-radius: 10px;
+        max-width: 500px;
+    }
