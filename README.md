@@ -3,7 +3,7 @@ Conceitos aprendidos na Faculdade e em cursos online.
 
 🌐 Fundamentos da Web
 	•	HTML5
-	•	Estrutura básica de uma página (<!DOCTYPE html>, <html>, <head>, <body>)
+	•	Estrutura básica de uma página
 	•	Títulos, parágrafos, links e imagens
 	•	Listas (<ul>, <ol>)
 	•	Formulários e inputs
