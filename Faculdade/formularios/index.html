@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Alunos</title>
+</head>
+<body>
+
+    <h2>Conhecendo Nossos Alunos</h2>
+
+    <form method="post" action="mailto:contato@sua-faculdade.com">
+        <table border="1" style="width:100%; border-collapse: collapse;">
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+                        <table style="width:100%;">
+                            <tr>
+                                <td><label for="idNome">Nome:</label></td>
+                                <td><input type="text" name="txtNome" id="idNome" placeholder="Digite seu nome" size="30"></td>
+                                <td><label for="idSobrenome">Sobrenome:</label></td>
+                                <td><input type="text" name="txtSobrenome" id="idSobrenome" placeholder="Digite seu sobrenome" size="30"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="idNasc">Data de Nascimento:</label></td>
+                                <td><input type="date" name="txtNasc" id="idNasc"></td>
+                                <td><label for="idEmail">E-mail:</label></td>
+                                <td><input type="email" name="txtEmail" id="idEmail" placeholder="seu@email.com" size="30"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="idTel">Telefone:</label></td>
+                                <td><input type="tel" name="txtTel" id="idTel" placeholder="(XX) XXXXX-XXXX"></td>
+                                <td><label>Sexo:</label></td>
+                                <td>
+                                    <input type="radio" name="rdSexo" id="idMasc" value="masculino"><label for="idMasc"> Masculino</label>
+                                    <input type="radio" name="rdSexo" id="idFem" value="feminino"><label for="idFem"> Feminino</label>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Endereço</legend>
+                        <table style="width:100%;">
+                            <tr>
+                                <td><label for="idRua">Rua:</label></td>
+                                <td colspan="3"><input type="text" name="txtRua" id="idRua" size="70"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="idNum">Número:</label></td>
+                                <td><input type="number" name="txtNum" id="idNum" min="0"></td>
+                                <td><label for="idBairro">Bairro:</label></td>
+                                <td><input type="text" name="txtBairro" id="idBairro" size="30"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="idEst">Estado:</label></td>
+                                <td>
+                                    <select name="selEstado" id="idEst">
+                                        <option value="mg">Minas Gerais</option>
+                                        <option value="rj">Rio de Janeiro</option>
+                                        <option value="sp">São Paulo</option>
+                                        <option value="es">Espírito Santo</option>
+                                    </select>
+                                </td>
+                                <td><label for="idCid">Cidade:</label></td>
+                                <td><input type="text" name="txtCid" id="idCid" size="30"></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Preferências e Outras Informações</legend>
+                        <table style="width:100%;">
+                            <tr>
+                                <td><strong>Preferências:</strong></td>
+                                <td>
+                                    <input type="checkbox" name="chkPref" id="idJogos" value="jogos"><label for="idJogos"> Jogos</label>
+                                    <input type="checkbox" name="chkPref" id="idNovela" value="novela"><label for="idNovela"> Novela</label>
+                                    <input type="checkbox" name="chkPref" id="idNoticias" value="noticias"><label for="idNoticias"> Notícias</label>
+                                </td>
+                            </tr>
+                             <tr>
+                                <td><label for="idCurso"><strong>Curso:</strong></label></td>
+                                <td><input type="text" name="txtCurso" id="idCurso" size="35"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="idPeriodo"><strong>Período:</strong></label></td>
+                                <td><input type="number" name="numPeriodo" id="idPeriodo" min="1" max="12"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="idRede"><strong>Rede Social:</strong></label></td>
+                                <td><input type="text" name="txtRede" id="idRede" placeholder="Link para seu perfil principal" size="35"></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>Espaço para Opinião</legend>
+                        <label for="idOpiniao">Deixe sua opinião, crítica ou sugestão:</label><br>
+                        <textarea name="txtOpiniao" id="idOpiniao" rows="8" cols="100" placeholder="Digite aqui..."></textarea>
+                    </fieldset>
+                </td>
+            </tr>
+
+            <tr style="text-align:center;">
+                <td>
+                    <br>
+                    <input type="submit" value="Enviar Formulário">
+                    <input type="reset" value="Limpar Dados">
+                    <br><br>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>
