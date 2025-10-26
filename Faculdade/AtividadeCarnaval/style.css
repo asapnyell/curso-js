@@ -1,6 +1,3 @@
-/* CSS Externo - Carnaval de Ubá */
-/* Aplicando conceitos do Módulo 03 de CSS Básico */
-
 /* Seletores de elemento */
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -21,10 +18,14 @@ body {
 
 /* Cabeçalho */
 header {
-    background-color: #FF1493;
+    background-image: url('./assets/img/bgcarnaval.jpg');
+    background-size: cover;
+    background-position: center;  
+    background-repeat: no-repeat; 
     color: white;
-    padding: 40px 0;
-    text-align: center;
+    padding: 100px 0;
+    text-align: center; 
+
 }
 
 header h1 {
