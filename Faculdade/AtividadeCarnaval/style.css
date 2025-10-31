@@ -40,8 +40,9 @@ header h1 {
 
 /* Menu de navegação */
 nav {
-    background-color: #2c3e50;
+    background-color: #C239B3;
     padding: 15px 0;
+    
 }
 
 nav ul {
@@ -63,7 +64,7 @@ nav a {
 }
 
 nav a:hover {
-    background-color: #FF6B9D;
+    background-color: #FF1493;
     color: white;
 }
 
@@ -95,7 +96,7 @@ section p {
 
 /* Cards de atrações */
 .cards {
-    margin-top: 20px;
+    margin-top: 5px;
 }
 
 .card {
