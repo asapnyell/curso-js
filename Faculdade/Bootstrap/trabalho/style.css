@@ -1,0 +1,33 @@
+/* ==============================
+   ESTILOS GERAIS
+   ============================== */
+
+/* Não precisa de 'body' , pois 
+  o 'data-bs-theme="dark"' no HTML 
+  já cuida do fundo e das fontes.
+*/
+
+/* ==============================
+   NAVBAR (Barra de Navegação)
+   ============================== */
+.navbar-brand img {
+  height: 40px;
+  width: auto;
+}
+
+/* ==============================
+   CARROSSEL (Página Home)
+   ============================== */
+.carousel-item img {
+
+  object-fit: cover; 
+}
+
+/* ==============================
+   CARDS (Página Lojas)
+   ============================== */
+.card {
+  /* Garante que os cards funcionem com o tema escuro */
+  background-color: var(--bs-card-bg);
+  border: 1px solid var(--bs-border-color);
+}
