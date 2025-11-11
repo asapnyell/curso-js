@@ -1,0 +1,20 @@
+/*
+Arquivo: style.css
+Este CSS complementa o Bootstrap.
+*/
+
+/* REQUISITO 2: Fundo preto para a página do letreiro */
+.body-marquee {
+    background-color: #000000;
+}
+
+/* REQUISITO 2: Centralizar o letreiro */
+.marquee-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Altura da área do letreiro */
+    width: 80%;
+    margin: 20px auto;
+    border: 2px dashed #333;
+}
