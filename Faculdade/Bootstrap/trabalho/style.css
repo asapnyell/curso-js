@@ -31,3 +31,25 @@
   background-color: var(--bs-card-bg);
   border: 1px solid var(--bs-border-color);
 }
+
+/* Define a animação de pulso */
+@keyframes pulse {
+  0% {
+    transform: scale(1); /* Tamanho normal */
+  }
+  50% {
+    transform: scale(1.06); /* Um pouco maior */
+  }
+  100% {
+    transform: scale(2); /* Volta ao normal */
+  }
+}
+
+/* Aplica a animação à sua classe (use um nome de classe diferente) */
+.pulse-title {
+  animation-name: pulse;
+  animation-duration: 2s;       /* Duração de cada pulso */
+  animation-iteration-count: infinite; /* Repete para sempre */
+  display: inline-block;
+  transform-origin: center; /* Necessário para 'transform' funcionar bem */
+}
