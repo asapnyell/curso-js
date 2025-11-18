@@ -10,17 +10,28 @@
 /* ==============================
    NAVBAR (Barra de Navegação)
    ============================== */
+/* tamanho padrão do logo */
 .navbar-brand img {
   height: 40px;
   width: auto;
 }
 
+/* evita scroll lateral no mobile causado por pequenos excessos */
+html, body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
 /* ==============================
    CARROSSEL (Página Home)
    ============================== */
+/* Mantive as imagens responsivas, sem forçar altura.
+   Não alterei tamanhos do carrossel conforme solicitado. */
 .carousel-item img {
-
-  object-fit: cover; 
+  object-fit: cover;
+  max-width: 100%;
+  height: auto; /* mantém proporção original e evita cortes forçados */
+  display: block;
 }
 
 /* ==============================
@@ -32,24 +43,153 @@
   border: 1px solid var(--bs-border-color);
 }
 
-/* Define a animação de pulso */
-@keyframes pulse {
-  0% {
-    transform: scale(1); /* Tamanho normal */
-  }
-  50% {
-    transform: scale(1.06); /* Um pouco maior */
-  }
-  100% {
-    transform: scale(2); /* Volta ao normal */
+/* ==============================
+   ANIMAÇÕES
+   ============================== */
+/* Define a animação de pulso (subir/descer) */
+@keyframes floatY {
+  0%   { transform: translateY(0); }
+  25%  { transform: translateY(-8px); }
+  50%  { transform: translateY(0); }
+  75%  { transform: translateY(8px); }
+  100% { transform: translateY(0); }
+}
+
+/* Aplica a animação à sua classe (Promoções) */
+.pulse-title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0.5rem auto 0;
+  animation-name: floatY;
+  animation-duration: 2.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+/* Ajuste suave para telas muito pequenas */
+@media (max-width: 576px) {
+  .pulse-title {
+    animation-duration: 3s;
+    transform-origin: center;
+    font-size: 1.1rem;
   }
 }
 
-/* Aplica a animação à sua classe (use um nome de classe diferente) */
-.pulse-title {
-  animation-name: pulse;
-  animation-duration: 2s;       /* Duração de cada pulso */
-  animation-iteration-count: infinite; /* Repete para sempre */
+/* ==============================
+   AJUSTES DE RESPONSIVIDADE
+   ============================== */
+
+/* Logo e brand mais consistentes */
+.navbar-logo,
+.navbar-brand img {
+  max-height: 48px;
+  height: auto;
+  width: auto;
   display: inline-block;
-  transform-origin: center; /* Necessário para 'transform' funcionar bem */
 }
+
+/* permite que brand quebre se necessário (evita empurrar itens) */
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+/* Garante que collapse não crie overflow e que nav possa quebrar em linhas */
+.navbar-collapse {
+  overflow: visible;
+}
+.navbar-nav {
+  flex-wrap: wrap;
+}
+
+/* Botões de autenticação (container criado pelo auth.js) */
+#auth-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Cards: mantém pôster com proporção consistente */
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+/* Imagens fluidas */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Container: padding confortável em telas pequenas */
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsividade: reduz alturas/valores em telas menores (sem alterar carrossel) */
+@media (max-width: 1200px) {
+  .card-img-top { height: 200px; }
+  .pulse-title { font-size: 1.8rem; }
+}
+
+@media (max-width: 768px) {
+  /* garante que o botão do toggler fique acima do carrossel/itens */
+  .navbar-toggler {
+    z-index: 1100;
+  }
+
+  /* quebra o texto do brand para não empurrar a barra */
+  .navbar-brand {
+    white-space: normal;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  /* se tiver texto extra dentro do brand (span), esconda para economizar espaço */
+  .navbar-brand span {
+    display: none;
+  }
+
+  /* reduz tamanho do logo móvel */
+  .navbar-logo,
+  .navbar-brand img {
+    max-height: 36px;
+  }
+
+  /* garante que itens do nav quebrem para a próxima linha sem criar overflow */
+  .navbar-nav {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  /* coloca os botões de autenticação em nova linha e alinha à direita */
+  #auth-buttons {
+    width: 100%;
+    margin-top: 0.5rem;
+    justify-content: flex-end;
+  }
+
+  .card-img-top { height: 160px; }
+  .pulse-title { font-size: 1.4rem; animation-duration: 3s; }
+}
+
+/* ajuste extra para telas muito pequenas (telefone) */
+@media (max-width: 420px) {
+  .navbar-logo { max-height: 32px; }
+  .nav-link { font-size: 0.95rem; }
+  #auth-buttons { justify-content: center; }
+  .card-img-top { height: 140px; }
+}
+
+/* ==============================
+   RODAPÉ
+   ============================== */
