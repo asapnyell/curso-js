@@ -23,15 +23,19 @@
     // If authButtonsContainer is used as a nav-item <li>, render nav-links so they collapse correctly
     const isNavItem = authButtonsContainer.classList && authButtonsContainer.classList.contains('nav-item');
     if (authUser) {
+      // If admin, show extra link to visualizar
+      const isAdmin = authUser.role === 'admin' || (authUser.email && authUser.email.toLowerCase() === 'admin@gmail.com');
       if (isNavItem) {
         authButtonsContainer.innerHTML = `
           <a href="perfil.html" class="nav-link">Olá, ${escapeHtml(authUser.nome)}</a>
+          ${isAdmin ? '<a href="visualizar.html" class="nav-link">Visualizar</a>' : ''}
           <a href="#" id="btn-logout" class="nav-link text-danger">Sair</a>
         `;
       } else {
         authButtonsContainer.innerHTML = `
           <div class="d-flex align-items-center gap-2">
             <span class="text-white me-2">Olá, ${escapeHtml(authUser.nome)}</span>
+            ${isAdmin ? '<a href="visualizar.html" class="btn btn-outline-info btn-sm">Visualizar</a>' : ''}
             <a href="perfil.html" class="btn btn-outline-light btn-sm">Perfil</a>
             <button id="btn-logout" class="btn btn-danger btn-sm">Sair</button>
           </div>
@@ -90,6 +94,10 @@
                   <label for="login-email" class="form-label">Email</label>
                   <input id="login-email" class="form-control" type="email" required>
                 </div>
+                <div class="mb-3">
+                  <label for="login-password" class="form-label">Senha</label>
+                  <input id="login-password" class="form-control" type="password" required autocomplete="current-password" placeholder="Informe sua senha" />
+                </div>
                 <div class="d-grid">
                   <button class="btn btn-primary" type="submit">Entrar</button>
                 </div>
@@ -107,6 +115,14 @@
                 <div class="mb-3">
                   <label for="cad-idade" class="form-label">Idade</label>
                   <input id="cad-idade" class="form-control" type="number" min="18" max="120" required>
+                </div>
+                <div class="mb-3">
+                  <label for="cad-senha" class="form-label">Senha</label>
+                  <input id="cad-senha" class="form-control" type="password" minlength="6" placeholder="mínimo 6 caracteres" required>
+                </div>
+                <div class="mb-3">
+                  <label for="cad-senha-confirm" class="form-label">Confirme a Senha</label>
+                  <input id="cad-senha-confirm" class="form-control" type="password" minlength="6" required>
                 </div>
                 <div class="d-grid">
                   <button class="btn btn-success" type="submit">Cadastrar</button>
@@ -161,14 +177,20 @@
     const nomeEl = document.getElementById('cad-nome');
     const emailEl = document.getElementById('cad-email');
     const idadeEl = document.getElementById('cad-idade');
+    const senhaEl = document.getElementById('cad-senha');
+    const senhaConfirmEl = document.getElementById('cad-senha-confirm');
 
     const nomeValido = validarNome(nomeEl.value);
     const emailValido = validarEmail(emailEl.value);
     const idadeValida = validarIdade(Number(idadeEl.value));
 
-    if (!nomeValido || !emailValido || !idadeValida) {
+    const senhaValida = senhaEl && senhaEl.value && senhaEl.value.length >= 6;
+    const senhaConfValida = senhaConfirmEl && senhaConfirmEl.value === senhaEl.value;
+
+    if (!nomeValido || !emailValido || !idadeValida || !senhaValida || !senhaConfValida) {
       showAuthAlert('Verifique os campos. Nome (mín 3), email válido e idade (18-120).', 'danger');
       markField(nomeEl, nomeValido); markField(emailEl, emailValido); markField(idadeEl, idadeValida);
+      markField(senhaEl, senhaValida); markField(senhaConfirmEl, senhaConfValida);
       return;
     }
 
@@ -178,7 +200,7 @@
       return;
     }
 
-    const novo = { nome: nomeEl.value.trim(), email: emailEl.value.trim().toLowerCase(), idade: Number(idadeEl.value) };
+    const novo = { nome: nomeEl.value.trim(), email: emailEl.value.trim().toLowerCase(), idade: Number(idadeEl.value), password: senhaEl.value };
     usuarios.push(novo);
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
 
@@ -190,12 +212,17 @@
     document.getElementById('cad-nome').value = '';
     document.getElementById('cad-email').value = '';
     document.getElementById('cad-idade').value = '';
+    const s = document.getElementById('cad-senha');
+    const sc = document.getElementById('cad-senha-confirm');
+    if (s) s.value = '';
+    if (sc) sc.value = '';
     document.querySelectorAll('#formCadastro .form-control').forEach(i => i.classList.remove('is-valid', 'is-invalid'));
   }
 
   function handleLogin(e) {
     e.preventDefault();
     const emailEl = document.getElementById('login-email');
+    const passEl = document.getElementById('login-password');
     const emailValido = validarEmail(emailEl.value);
 
     if (!emailValido) {
@@ -204,14 +231,38 @@
       return;
     }
 
-    const user = usuarios.find(u => u.email.toLowerCase() === emailEl.value.trim().toLowerCase());
-    if (!user) {
-      showAuthAlert('Usuário não encontrado. Cadastre-se primeiro.', 'warning');
-      markField(emailEl, false);
-      return;
-    }
+    const emailNormalized = emailEl.value.trim().toLowerCase();
 
-    authUser = user;
+    // Admin override: admin@gmail.com with password '123'
+    if (emailNormalized === 'admin@gmail.com') {
+      const senha = passEl ? passEl.value : '';
+      if (senha !== '123') {
+        showAuthAlert('Senha inválida para o administrador.', 'danger');
+        markField(passEl, false);
+        return;
+      }
+      authUser = { nome: 'Administrador', email: 'admin@gmail.com', role: 'admin' };
+    } else {
+      const user = usuarios.find(u => u.email.toLowerCase() === emailNormalized);
+      if (!user) {
+        showAuthAlert('Usuário não encontrado. Cadastre-se primeiro.', 'warning');
+        markField(emailEl, false);
+        return;
+      }
+      // Require password for all users. If stored user has no password, ask to re-cadastre.
+      if (!user.password) {
+        showAuthAlert('Este usuário não possui senha cadastrada. Por favor, cadastre-se novamente para definir uma senha.', 'warning');
+        markField(emailEl, false);
+        return;
+      }
+      const senha = passEl ? passEl.value : '';
+      if (!senha || senha !== user.password) {
+        showAuthAlert('Senha inválida.', 'danger');
+        markField(passEl, false);
+        return;
+      }
+      authUser = Object.assign({}, user, { role: 'user' });
+    }
     localStorage.setItem('authUser', JSON.stringify(authUser));
     showAuthAlert(`Bem-vindo, ${escapeHtml(authUser.nome)}!`, 'success');
 
@@ -233,10 +284,14 @@
     const nome = document.getElementById('cad-nome');
     const email = document.getElementById('cad-email');
     const idade = document.getElementById('cad-idade');
+    const senha = document.getElementById('cad-senha');
+    const senhaConfirm = document.getElementById('cad-senha-confirm');
     if (nome && email && idade) {
       nome.addEventListener('input', () => markField(nome, validarNome(nome.value)));
       email.addEventListener('input', () => markField(email, validarEmail(email.value)));
       idade.addEventListener('input', () => markField(idade, validarIdade(Number(idade.value))));
+      if (senha) senha.addEventListener('input', () => markField(senha, senha.value && senha.value.length >= 6));
+      if (senhaConfirm) senhaConfirm.addEventListener('input', () => markField(senhaConfirm, senhaConfirm.value === (senha ? senha.value : '')));
     }
   }
 
