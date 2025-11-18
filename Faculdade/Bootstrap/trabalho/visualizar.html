@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Visualizar Usuários - Marvelous Shopping</title>
+ </head>
+ <body>
+  <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" href="home.html">
+        <img src="img/home/marvelous.png" class="navbar-logo" alt="logo"> Marvelous Shopping
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto"></ul>
+        <ul class="navbar-nav">
+          <li id="auth-buttons" class="nav-item d-flex align-items-center ms-3"></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-5">
+    <h3 class="text-center mb-4">Usuários Cadastrados</h3>
+    <div class="table-responsive">
+      <table class="table table-striped" id="usuarios-table">
+        <thead class="table-light"><tr><th>Nome</th><th>Email</th><th>Ações</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="container mt-5 text-center"><hr><p class="text-body-secondary">&copy; Marvelous Shopping</p></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/visualizar.js"></script>
+ </body>
+</html>
