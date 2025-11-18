@@ -20,22 +20,41 @@
   function renderAuthButtons() {
     if (!authButtonsContainer) return;
     authButtonsContainer.innerHTML = '';
+    // If authButtonsContainer is used as a nav-item <li>, render nav-links so they collapse correctly
+    const isNavItem = authButtonsContainer.classList && authButtonsContainer.classList.contains('nav-item');
     if (authUser) {
-      authButtonsContainer.innerHTML = `
-        <div class="d-flex align-items-center gap-2">
-          <span class="text-white me-2">Olá, ${escapeHtml(authUser.nome)}</span>
-          <a href="perfil.html" class="btn btn-outline-light btn-sm">Perfil</a>
-          <button id="btn-logout" class="btn btn-danger btn-sm">Sair</button>
-        </div>
-      `;
-      document.getElementById('btn-logout').addEventListener('click', logout);
+      if (isNavItem) {
+        authButtonsContainer.innerHTML = `
+          <a href="perfil.html" class="nav-link">Olá, ${escapeHtml(authUser.nome)}</a>
+          <a href="#" id="btn-logout" class="nav-link text-danger">Sair</a>
+        `;
+      } else {
+        authButtonsContainer.innerHTML = `
+          <div class="d-flex align-items-center gap-2">
+            <span class="text-white me-2">Olá, ${escapeHtml(authUser.nome)}</span>
+            <a href="perfil.html" class="btn btn-outline-light btn-sm">Perfil</a>
+            <button id="btn-logout" class="btn btn-danger btn-sm">Sair</button>
+          </div>
+        `;
+      }
+      const logoutBtn = document.getElementById('btn-logout');
+      if (logoutBtn) logoutBtn.addEventListener('click', logout);
     } else {
-      authButtonsContainer.innerHTML = `
-        <button id="btn-entrar" class="btn btn-outline-light btn-sm me-2">Entrar</button>
-        <button id="btn-cadastrar" class="btn btn-light btn-sm">Cadastrar</button>
-      `;
-      document.getElementById('btn-entrar').addEventListener('click', () => showAuthModal('login'));
-      document.getElementById('btn-cadastrar').addEventListener('click', () => showAuthModal('cadastro'));
+      if (isNavItem) {
+        authButtonsContainer.innerHTML = `
+          <a href="#" id="btn-entrar" class="nav-link">Entrar</a>
+          <a href="cadastro.html" id="btn-cadastrar" class="nav-link">Cadastrar</a>
+        `;
+      } else {
+        authButtonsContainer.innerHTML = `
+          <button id="btn-entrar" class="btn btn-outline-light btn-sm me-2">Entrar</button>
+          <button id="btn-cadastrar" class="btn btn-light btn-sm">Cadastrar</button>
+        `;
+      }
+      const entrarBtn = document.getElementById('btn-entrar');
+      const cadastrarBtn = document.getElementById('btn-cadastrar');
+      if (entrarBtn) entrarBtn.addEventListener('click', (e) => { e.preventDefault(); showAuthModal('login'); });
+      if (cadastrarBtn) cadastrarBtn.addEventListener('click', (e) => { if (e) e.preventDefault(); showAuthModal('cadastro'); });
     }
   }
 
