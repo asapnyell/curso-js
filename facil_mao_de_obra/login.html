@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar ou Cadastrar - Fácil Mão de Obra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f0f2f5; display: flex; align-items: center; min-height: 100vh; }
+        .auth-card { max-width: 500px; width: 100%; margin: auto; padding: 2rem; background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .nav-pills .nav-link.active { background-color: #0d6efd; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="auth-card">
+        <h3 class="text-center fw-bold text-primary mb-4">Fácil Mão de Obra</h3>
+        
+        <ul class="nav nav-pills nav-fill mb-4" id="pills-tab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#pills-login">Login</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-register">Criar Conta</button>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="pills-login">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">E-mail</label>
+                        <input type="email" class="form-control" placeholder="seu@email.com">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Senha</label>
+                        <input type="password" class="form-control" placeholder="******">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2">Entrar</button>
+                    <div class="text-center mt-3">
+                        <a href="#" class="small text-decoration-none">Esqueci minha senha</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="tab-pane fade" id="pills-register">
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Eu sou:</label>
+                    <select class="form-select" id="userType" onchange="toggleProviderFields()">
+                        <option value="client">Cliente (Quero contratar)</option>
+                        <option value="provider">Prestador (Quero trabalhar)</option>
+                    </select>
+                </div>
+
+                <form>
+                    <div class="row g-2">
+                        <div class="col-6 mb-2"><input type="text" class="form-control" placeholder="Nome Completo" required></div>
+                        <div class="col-6 mb-2"><input type="text" class="form-control" placeholder="CPF" required></div>
+                    </div>
+                    <div class="mb-2"><input type="email" class="form-control" placeholder="E-mail" required></div>
+                    <div class="mb-2"><input type="password" class="form-control" placeholder="Senha" required></div>
+                    
+                    <div id="providerFields" style="display:none; background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                        <h6 class="small text-muted fw-bold mb-2">Área Profissional</h6>
+                        <select class="form-select mb-2">
+                            <option>Selecione sua Categoria...</option>
+                            <option>Serviços Domésticos</option>
+                            <option>Tecnologia e Design</option>
+                        </select>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text">R$/h</span>
+                            <input type="number" class="form-control" placeholder="Valor Hora">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label small">Currículo/Certificações (PDF)</label>
+                            <input type="file" class="form-control form-control-sm">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 py-2">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function toggleProviderFields() {
+        const type = document.getElementById('userType').value;
+        const fields = document.getElementById('providerFields');
+        fields.style.display = type === 'provider' ? 'block' : 'none';
+    }
+</script>
+</body>
+</html>
